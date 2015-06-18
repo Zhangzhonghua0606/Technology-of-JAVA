@@ -1,0 +1,84 @@
+// 1、变量——Variables
+//Less中的变量充许你在样式中的某个地方对常用的值进行定义，
+//然后应用到样式中，这样只要改变你定义的变量参数值就可以达到改变全局的效果
+/*======== 定义变量===========*/
+        @color: #4d926f;
+        /*======== 应用到元素中 ========*/
+        #header {
+          color: @color;
+        }
+        h2 {
+          color: @color;
+        }
+// Less中的变量还具有计算功能，如：
+        @nice-blue: #5b83ad;
+        @light-blue: @nice-blue + #111;
+        #header2 {
+          color: @light-blue;
+        }
+
+// 我们还可以定义一个变量名为变量，如:
+        @color: #253636;
+        @highlight: "color";
+        #header3 {color: @@highlight;}
+
+// 在Less中的变量实际上就是一个“常量”，因为它们只能被定义一次。
+        @color: #253636;
+        @highlight: "color";
+        @color: #ff3636;
+        #header4 {color: @@highlight;}
+
+//2、混入——Mixins
+// 混入其实就是一种嵌套，它充许你将一个类嵌入到另一个类中，
+// 而被嵌入的这个类也称为是一个变量。换句话说，你可以用一个类定义CSS，
+// 然后把整个类当作一个变量来使用，嵌入到另一人类中当作他的属性；
+// 另外混入也像一个带有参数的functions，如:
+/*========= 定义一个类 ===========*/
+        // 我们还可以给Mixins的参数定义一人默认值，如5px
+        .roundedCorners(@radius:5px) {
+          -moz-border-radius: @radius;
+          -webkit-border-radius: @radius;
+          border-radius: @radius;
+        }
+        /*＝＝＝＝＝＝＝＝＝＝ 定义的类应用到另个一个类中 ＝＝＝＝＝＝＝＝＝＝＝*/
+        ＃header5 {
+          .roundedCorners;
+        }
+        #footer {
+          .roundedCorners(10px);
+        }
+
+// 混入(Mixin)有一个名词叫“混入参数（Parametric Mixins）”，
+// 上面也说过。Less具有一个特殊类型的规则集，那就是一个类可以当作另一个元素的属生值，
+// 并且还可以接受其自己的参数，我们来看一个典型的实例
+/*========== 定义一个规则，并且不设置默认参数值 ============*/
+        .borderRadius(@radius){
+          -moz-border-radius: @radius;
+          -webkit-border-radius: @radius;
+          border-radius: @radius;
+        }
+        /*============ 应用到元素中 ============*/
+        #header6 {
+          .borderRadius(10px); /*把10px传给变量@radius*/
+        }
+        .btn {
+          .borderRadius(3px);/*把3px传给变量@radius*/
+        }
+
+// Mixins还有一个重要的变量：@arguments。
+// @arguments在Mixins中具是一个很特别的参数，当Mixins引用这个参数时，
+// 他将表示所有的变量，当你不想处理个别的参数时，这个将很有用，
+// 我们来看一个阴影的实例：
+        .boxShadow(@x:0,@y:0,@blur:1px,@color:#000){
+          -moz-box-shadow: @arguments;
+          -webkit-box-shadow: @arguments;
+          box-shadow: @arguments;
+        }
+
+        #header {
+          .boxShadow(2px,2px,3px,#f36);
+        }
+
+        #nav {
+          .boxShadow;
+        }

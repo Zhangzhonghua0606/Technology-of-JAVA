@@ -1,0 +1,53 @@
+/*======== 定义变量===========*/
+/*======== 应用到元素中 ========*/
+#header {
+  color: #ff3636;
+}
+h2 {
+  color: #ff3636;
+}
+#header2 {
+  color: #6c94be;
+}
+#header3 {
+  color: #ff3636;
+}
+#header4 {
+  color: #ff3636;
+}
+/*========= 定义一个类 ===========*/
+/*＝＝＝＝＝＝＝＝＝＝ 定义的类应用到另个一个类中 ＝＝＝＝＝＝＝＝＝＝＝*/
+＃header5 {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+#footer {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+/*========== 定义一个规则，并且不设置默认参数值 ============*/
+/*============ 应用到元素中 ============*/
+#header6 {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  /*把10px传给变量@radius*/
+}
+.btn {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  /*把3px传给变量@radius*/
+}
+#header {
+  -moz-box-shadow: 2px 2px 3px #ff3366;
+  -webkit-box-shadow: 2px 2px 3px #ff3366;
+  box-shadow: 2px 2px 3px #ff3366;
+}
+#nav {
+  -moz-box-shadow: 0 0 1px #000000;
+  -webkit-box-shadow: 0 0 1px #000000;
+  box-shadow: 0 0 1px #000000;
+}

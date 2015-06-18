@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Angular JS Directive 1-1</title>
+    </head>
+    <body ng-app="snail-app" ng-controller="MainCtrl">
+        <input type="text" ng-model="color" placeholder="Enter a color" />
+        <hello-upsnail></hello-upsnail>
+        
+        <my-directive></my-directive>
+    
+    <script src="http://apps.bdimg.com/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular.min.js"></script>
+    </body>
+    <script>
+        var app = angular.module('snail-app', []);
+            app
+            .controller('MainCtrl',function($scope){
+            	$scope.color = "";
+            })    
+            .directive('myDirective', function () {
+                    return { 
+                        restrict: 'E', 
+                        template: '<a href="http://www.upsnail.com">点我</a>' 
+                    };
+                })
+            .directive('helloUpsnail', function () {
+                        return {
+                            restrict: 'EAC',
+                            replace: true,
+                            template: '<p style="background-color:{{color}}">Hello World</p>',
+                            link: function (scope, elems, attrs) {
+                                elem.bind('click', function () {
+                                    elems.css('background-color', 'white');
+                                    scope.$apply(function () {
+                                        scope.color = "white";
+                                    });
+                                });
+                                elems.bind('mouseover', function () {
+                                    elems.css('cursor', 'pointer');
+                                });
+                            }
+                        };
+                    });
+    </script>
+</html>
