@@ -10,14 +10,8 @@ scp -r share@192.168.225.109:.m2/repository .m2/
 
 运行lombok安装到eclipse中： java -jar ~/Downloads/tar/lombok.jar
 
-openJDK
-/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/security
-/usr/lib/jvm/java-7-oracle/jre/lib/security
-/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security
-/etc/security
-/etc/java-6-openjdk/security
-/etc/java-7-openjdk/security
-
+JDK目录
+/usr/lib/jvm/
 
 select http_code,count(http_code) as count from (select get_json_object(sls_extract_others, '$.http_code') as http_code,sls_time from wx_accesslogs) temp group by http_code;
 
