@@ -1,5 +1,3 @@
-http://portal.augmentum.com.cn/  群硕网站
-
 查看端口占用情况并杀掉
 netstat junlp | grep 端口号
 kill -9 进程号
