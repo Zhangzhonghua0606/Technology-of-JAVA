@@ -2,31 +2,31 @@
 //Less中的变量充许你在样式中的某个地方对常用的值进行定义，
 //然后应用到样式中，这样只要改变你定义的变量参数值就可以达到改变全局的效果
 /*======== 定义变量===========*/
-        @color: #4d926f;
-        /*======== 应用到元素中 ========*/
-        #header {
-          color: @color;
-        }
-        h2 {
-          color: @color;
-        }
+@color: #4d926f;
+/*======== 应用到元素中 ========*/
+#header {
+  color: @color;
+}
+h2 {
+  color: @color;
+}
 // Less中的变量还具有计算功能，如：
-        @nice-blue: #5b83ad;
-        @light-blue: @nice-blue + #111;
-        #header2 {
-          color: @light-blue;
-        }
+@nice-blue: #5b83ad;
+@light-blue: @nice-blue + #111;
+#header2 {
+  color: @light-blue;
+}
 
 // 我们还可以定义一个变量名为变量，如:
-        @color: #253636;
-        @highlight: "color";
-        #header3 {color: @@highlight;}
+@color: #253636;
+@highlight: "color";
+#header3 {color: @@highlight;}
 
 // 在Less中的变量实际上就是一个“常量”，因为它们只能被定义一次。
-        @color: #253636;
-        @highlight: "color";
-        @color: #ff3636;
-        #header4 {color: @@highlight;}
+@color: #253636;
+@highlight: "color";
+@color: #ff3636;
+#header4 {color: @@highlight;}
 
 //2、混入——Mixins
 // 混入其实就是一种嵌套，它充许你将一个类嵌入到另一个类中，
@@ -34,51 +34,251 @@
 // 然后把整个类当作一个变量来使用，嵌入到另一人类中当作他的属性；
 // 另外混入也像一个带有参数的functions，如:
 /*========= 定义一个类 ===========*/
-        // 我们还可以给Mixins的参数定义一人默认值，如5px
-        .roundedCorners(@radius:5px) {
-          -moz-border-radius: @radius;
-          -webkit-border-radius: @radius;
-          border-radius: @radius;
-        }
-        /*＝＝＝＝＝＝＝＝＝＝ 定义的类应用到另个一个类中 ＝＝＝＝＝＝＝＝＝＝＝*/
-        ＃header5 {
-          .roundedCorners;
-        }
-        #footer {
-          .roundedCorners(10px);
-        }
+// 我们还可以给Mixins的参数定义一人默认值，如5px
+.roundedCorners(@radius:5px) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+/*＝＝＝＝＝＝＝＝＝＝ 定义的类应用到另个一个类中 ＝＝＝＝＝＝＝＝＝＝＝*/
+＃header5 {
+  .roundedCorners;
+}
+#footer {
+  .roundedCorners(10px);
+}
 
 // 混入(Mixin)有一个名词叫“混入参数（Parametric Mixins）”，
 // 上面也说过。Less具有一个特殊类型的规则集，那就是一个类可以当作另一个元素的属生值，
 // 并且还可以接受其自己的参数，我们来看一个典型的实例
 /*========== 定义一个规则，并且不设置默认参数值 ============*/
-        .borderRadius(@radius){
-          -moz-border-radius: @radius;
-          -webkit-border-radius: @radius;
-          border-radius: @radius;
-        }
-        /*============ 应用到元素中 ============*/
-        #header6 {
-          .borderRadius(10px); /*把10px传给变量@radius*/
-        }
-        .btn {
-          .borderRadius(3px);/*把3px传给变量@radius*/
-        }
+.borderRadius(@radius){
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+/*============ 应用到元素中 ============*/
+#header6 {
+  .borderRadius(10px); /*把10px传给变量@radius*/
+}
+.btn {
+  .borderRadius(3px);/*把3px传给变量@radius*/
+}
 
 // Mixins还有一个重要的变量：@arguments。
 // @arguments在Mixins中具是一个很特别的参数，当Mixins引用这个参数时，
 // 他将表示所有的变量，当你不想处理个别的参数时，这个将很有用，
 // 我们来看一个阴影的实例：
-        .boxShadow(@x:0,@y:0,@blur:1px,@color:#000){
-          -moz-box-shadow: @arguments;
-          -webkit-box-shadow: @arguments;
-          box-shadow: @arguments;
+.boxShadow(@x:0,@y:0,@blur:1px,@color:#000){
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+#header {
+  .boxShadow(2px,2px,3px,#f36);
+}
+
+#nav {
+  .boxShadow;
+}
+
+// 3、嵌套规则——Nested Rules
+//嵌套规则主要是针对一多层元素的样式规则写法，以前我们在多层元素中写样式，
+//要么从头选下来，要么另外给这个元素加上类名或id名，但在Less中我们不需要这样操作了，
+//我们只要使用他的嵌套规则就可以完成，我们来看一个简单的实例：
+//
+//        <div id="header">
+//          <h1><a href="">W3cplus</a></h1>
+//          <p>记述前端那些事——引领Web前沿</p>
+//        </div>
+
+#header {
+          display: inline;
+          float: left;
+          h1 {
+            font-size: 26px;
+            font-weight: bold;
+            a {
+              text-decoration: none;
+              color: #f36;
+              &:hover {
+                text-decoration: underline;
+                color: #63f;
+              }
+            }
+          }
+          p {
+            font-size: 12px;
+          }
         }
 
-        #header {
-          .boxShadow(2px,2px,3px,#f36);
-        }
+//从上在的实例代码中，我都很清楚的了解到，
+//嵌套规则可以让我们写样式时能像DOM树形那样有结构的去写代码，
+//从而减了选择器的层级关系，更主要的是这样使用我们的代码更简洁，更具有阅读生，
+//这种嵌套规则对我们操作伪元素更为方便和重要，如:hover，:link,:focus等，他的写法是：
 
-        #nav {
-          .boxShadow;
-        }
+a {
+    color: red;
+    text-decoration: none;
+    &:hover {
+      color: blue;
+      text-decoration: underline;
+    }
+    &:visited {
+      color: green;
+      text-decoration: none;
+    }
+  }
+//在Less中嵌套书写中有没有&区别是完全不一样的效果，
+//有&时解析的是同一个元素或此元素的伪类，没有&解析是后代元素
+#header {
+  &.fl{
+    float: left;
+  }
+  .mln {
+    margin-left: 0;
+  }
+}
+
+//4、Functions & Operations
+//这两个功能很有意思的。在我们平时的样式中，有很多元素的属性都具有一定的比例或倍数。
+//那么这两个刚好可以帮我们实现这方面的功能，
+//首先来看Operations（直译“动作”）他可以让你对元素的属性值，颜色进行四则运算：加、减、乘、除。
+//而Function就像javascript中的function一样可以让你进行你想要的值的操作。
+//下面我们先来看一个简单的实例：
+@the-border: 1px;
+@base-color: #111;
+@red: #842210;
+#header {
+  color: @base-color *3;
+  border: 1px solid desaturate(@red,100%);
+  border-width: @the-border @the-border*2 @the-border*3 @the-border;
+  border-color:desaturate(@red,100%) @red lighten(@red, 10%)  darken(@red, 30%);
+}
+//这里提出一点，Less中的Operations主要是针对任何数字、颜色、变量的操作，
+//可以对其是行加、减、、乘、除或者更复杂的综合运算；
+//而Functions主要是针对Color funtions，Less提供了多种变换颜色的功能，
+//下面多们来俱体看一下这两个功能的使用。
+@base: 5%;
+@filler: @base*2;
+@other: @base + @filler;
+#header {
+  color: #888 / 4;
+  height: 100% / 2 + @filler;
+}
+
+//上面是一些简单的四则运算，他们都是在同一单位下进行操作，
+//现在我们一起来看一个不同单位的操作:
+@var: 1px + 5;
+#header {
+  border: @var solid red;
+}
+//在Less中我们同样可以像做小学算术一样，使用括号“（）”来改变其运算的先后顺序，如：
+@var: 20px;
+#header {
+  width: @var + 5 * 2;
+  height: (@var + 5 ) * 2;
+}
+//Less中还提供了一个Color Functions，他具有多种变换颜色的功能，
+//先把颜色转换成HSL色，然后在此基础上进行操作，具体包括以下几种：
+// lighten(@color, 10%);     // return a color which is 10% *lighter* than @color
+// darken(@color, 10%);      // return a color which is 10% *darker* than @color
+// saturate(@color, 10%);    // return a color 10% *more* saturated than @color
+// desaturate(@color, 10%);  // return a color 10% *less* saturated than @color
+// fadein(@color, 10%);      // return a color 10% *less* transparent than @color
+// fadeout(@color, 10%);     // return a color 10% *more* transparent than @color
+// spin(@color, 10);         // return a color with a 10 degree larger in hue than @color
+// spin(@color, -10);        // return a color with a 10 degree smaller hue than @color
+
+@base: #f04615;
+#header {
+  color: @base;
+  background-color: fadein(@base, 10%);
+  h1 {
+    color: lighten(@base,20%);
+    background-color: lighten(fadeout(@base,20%),5%);
+    a {
+      color: darken(@base,50%);
+      background-color: spin(@base,10);
+      &:hover {
+        color: saturate(@base,30%);
+        background-color: fadein(spin(@base,-5),20%);
+      }
+    }
+  }
+  p {
+    color: desaturate(@base,60%);
+  }
+}
+
+//还可以通过这样的方式提取颜色值:
+//hue(@color);        // returns the `hue` channel of @color
+//saturation(@color); // returns the `saturation` channel of @color
+//lightness(@color);  // returns the 'lightness' channel of @color
+@color: #f36;
+#header {
+  background-color: hsl(hue(@color),45%,90%);
+}
+
+//5、命名空间——Namespaces
+//有时候你想把一些变量或mixins组织起来，并将他封装，
+//想用的时候就把要关的一部分取出来，那么我们将在前面的mixins基础上将其功能扩展，
+//比如说我们有一个这样的库：
+#bundle {
+  .button () {
+    display: block;
+    border: 1px solid black;
+    background-color: grey;
+    &:hover { background-color: white }
+  }
+  .tab {
+    color: black;
+  }
+  .citation {
+    text-decoration: underline;
+  }
+}
+
+//在在实际操作中，我们header中的a样式和.button一样，那么我们就可以这样操作：
+#header a {
+  color: orange;
+  #bundle > .button;
+}
+//换过一种思维来说，如果页面上有几个部分的样是完全一样的，
+//或者只是部分不同，我们就可以这样来写，就如上面的代码，
+//#bundle可是以web页面中已存在的元素，然后#header中的a元素和#bundle中的.button样式是一样的，
+//那么我们就可以把#bundle中 .button的所有样式引用到#header中的a元素上。
+
+//6、变量范围——Scope
+//Less中的变量和别的程序语言一样，他的变量也有一个范围概念，
+//这个概念就有点像局部变量和全局变量一样，只是在Less中采取的是就近原则，换句话说，
+//元素先找本身有没有这个变量存在，如果本身存在，就取本身中的变量，
+//如果本身不存在，就寻找父元素，依此类推，直到寻找到相对应的变量，我们来看个简单的实例：
+@var: red;
+#page {
+  @var: white;
+  #header {
+    color: @var; // white
+  }
+}
+#footer {
+  color: @var; // red
+}
+
+//7、Less的注解——Comments
+//Less中的注解有两种方式，单行注解很像js中的，如：
+
+// Hi, I'm a silent comment, I won't show up in your CSS
+.class { color: white }
+
+//Less中的多行注解和使用css中的一样：
+
+/* Hello, I'm a
+   CSS-style comment
+*/
+.class { color: black }
+
+//正确的引入方式：
+//<link rel="stylesheet/less" type="text/css" href="styles.less">
+//<script src="less.js" type="text/javascript"></script>
