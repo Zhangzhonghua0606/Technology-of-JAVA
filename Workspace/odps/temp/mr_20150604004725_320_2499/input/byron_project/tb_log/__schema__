@@ -1,0 +1,5 @@
+project=byron_project
+table=tb_log
+columns=url:STRING,code:BIGINT
+partitions=operation_date:STRING
+

@@ -1,0 +1,3 @@
+project=byron_project
+table=tb_result
+columns=status:BIGINT,cnt:BIGINT

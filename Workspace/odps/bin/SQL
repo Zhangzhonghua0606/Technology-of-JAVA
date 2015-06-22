@@ -1,0 +1,11 @@
+创建中间表
+create table if not exists tmp (sls_source string,sls_time bigint,sls_topic string,proxy_ip string,time string,http_method string,http_path string,http_code bigint,rsp_size bigint,rsp_time string,proxy_rsp_time string,client_ip string,body string) partitioned by (sls_partition_time string);
+
+向中间表中插入数据
+insert into table tmp select sls_time, regexp_extract(sls_extract_others,'<ToUserName>(.*?)</ToUserName>',1), regexp_extract(sls_extract_others,'<Encrypt>(.*?)</Encrypt>',1) from wx_accesslogs;
+
+表wx_accesslogs_detail DLL语句
+create table if not exists wx_accesslogs_detail(sls_source string,sls_time bigint,sls_topic string,proxy_ip string,time string,http_method string,http_path string,http_code bigint,rsp_size bigint,rsp_time double,proxy_rsp_time double,client_ip string,to_user_name string,from_user_name string,create_time bigint,msg_type string,event string,latitude double,longitude double,precision double,event_key string,ticket string,content string,media_id bigint,format_ string,thumb_media_id bigint,location_x double,location_y double,scale bigint,label string,title string,description string,url string,msg_id bigint,status string,total_count bigint,filter_count bigint,sent_count bigint,error_count bigint) partitioned by (sls_partition_time string);
+
+ODPS中用于处理分页SQL
+select body from (select body,row_number() over (partition by sls_topic order by sls_time desc,sls_source) as rank from tmp) sub where rank > 0 and rank <= 20;
