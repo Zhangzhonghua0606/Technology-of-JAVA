@@ -1,3 +1,0 @@
-project=byron_project
-table=result
-columns=status:BIGINT,cnt:BIGINT

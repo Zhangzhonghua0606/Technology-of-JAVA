@@ -1,5 +1,0 @@
-project=byron_project
-table=log
-columns=url:STRING,code:BIGINT
-partitions=operation_date:STRING
-

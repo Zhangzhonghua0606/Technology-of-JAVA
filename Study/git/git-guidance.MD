@@ -37,3 +37,12 @@
 # check out code from remote 
     git pull -r
 
+# create branch
+    git branch branchName
+
+# switch branch
+    git checkout branchName
+
+# create and switch a new branch
+    git checkout -b branchName
+
