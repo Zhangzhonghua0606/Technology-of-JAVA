@@ -27,10 +27,10 @@ angular.forEach(todoList.todos, function(todo) {
 - Angular的事件类型会自动触发`$apply`方法，然后`$digest`逐个检查`$watch`所监视的
 值是否发生改变
 
-    ```js  
-    var stop = $scope.$watch(“expression”， function(newVal, oldVal){}) 
+    ```js
+    var stop = $scope.$watch(“expression”， function(newVal, oldVal){})
     // 执行时会返回一个函数, 当调用这个函数的时候会将watch所绑定的数据解绑。
-    stop(); 
+    stop();
     ```
 
 - 手动执行`$apply`方法：`$scope.$apply()`或`$scope.$apply(function(){})`
@@ -48,7 +48,7 @@ angular.forEach(todoList.todos, function(todo) {
 
 - Angular internally creates a `$watch` for each `ng-*` directive in order to keep the data up to date
 
-## Bindonce 
+## Bindonce
 - 用于在第一次加载数据时将数据绑定的model上并渲染页面，解绑`$watch`,之后将不再进行动态更新。
 - 适合只加载一次数据，之后不再改变的数据。
 
@@ -63,11 +63,11 @@ angular.forEach(todoList.todos, function(todo) {
     $setViewValue -> $parsers
     ```
 
-- Refer to: https://docs.angularjs.org/api/ng/type/ngModel.NgModelController   
+- Refer to: https://docs.angularjs.org/api/ng/type/ngModel.NgModelController
 
 ## Different types of service
 
-`provider`, `value`, `constant`, `factory`, `service`  
+`provider`, `value`, `constant`, `factory`, `service`
 
 `$povider.decorater`: 用于为已经存在的`service`(除`constant`处)扩展额外的功能。
 
@@ -89,7 +89,7 @@ A constant can be injected everywhere and that includes provider constructor and
     app.module('app',[]).service('MyService', function(){
        service = {};
        var private = "private"  // 这是私有的属性
-       service.isPrivate = function(){ 
+       service.isPrivate = function(){
          return private == "private";
     };
        service.doThing = function(){};
