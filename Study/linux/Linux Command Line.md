@@ -5,12 +5,6 @@
 - lsb_release -a 查看系统当前版本号
 
 
-## 查看端口占用情况并杀掉
-
-netstat junlp | grep 端口号
-
-kill -9 进程号
-
 scp -r share@192.168.225.109:.m2/repository .m2/
 
 运行lombok安装到eclipse中： java -jar ~/Downloads/tar/lombok.jar
@@ -26,3 +20,14 @@ sudo route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.225.1
 ```
 
 **Note:** *Add the command into a shell and run it everytime system starts up is a good idea.*
+
+## 查看端口占用情况并杀掉
+```shell
+netstat junlp | grep 端口号
+kill -9 进程号
+```
+## 查找*.py文件中的some_function.
+```shell
+find . -name '*.py' | xargs grep some_function
+```
+
