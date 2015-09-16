@@ -1,0 +1,13 @@
+- on top of that 最重要的是
+- evolves the ideas of xxx
+- ship a product 发布（完成，出售）一个产品
+- employ practices
+- demonstrate
+- walking throught
+- dozens of ...
+- in progress
+- puzzle over conundrums
+- worry over ambiguities and trades-offs
+- to a large degree
+- you might need to check for yourself 你最好亲自试一下
+- be built on top of xxx 什么是基于xxx的

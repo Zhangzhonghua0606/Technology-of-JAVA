@@ -41,3 +41,18 @@ echo get_class(B::get_self());  // A
 echo get_class(B::get_static()); // B
 echo get_class(A::get_static()); // A
 ```
+
+## `attribute()` VS `safeAttributes()`
+
+```php
+$attachment->name = $value['name'];
+$attachment->type = $value['type'];
+$attachment->size = $value['size'];
+$attachment->url = $value['url'];
+```
+
+The sentences above can be used `$attachement->attributes = $value` instead.
+The method `$attachement->attributes = $value` will invoke `$attachment->setAttributes($value)` implicitly.
+
+- The method `safeAttributes()` you defined in model Attachment indicate which attributes should be massively assigned to model when performing method `setAttributes()`. Refer to http://www.yiiframework.com/doc-2.0/yii-base-model.html#setAttributes()-detail.
+- The method `attributes()` in model indicate which attributes would be persistence into db.

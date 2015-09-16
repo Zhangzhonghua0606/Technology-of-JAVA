@@ -2,13 +2,13 @@
     ssh-keygen
 
 # clone project
-    git clone git@git.augmentum.com.cn:eriksson.luo/exam.git
+    git clone git@git.example.com.cn:eriksson.luo/exam.git
 
 # set user name
     git config --global user.name 'Kevin Sun'
 
 # set user email
-    git config --global user.email 'kevinsun@augmentum.com.cn'
+    git config --global user.email 'kevinsun@example.com.cn'
 
 # set file mode
     git config --global core.filemode false
@@ -83,3 +83,10 @@ rebase之后，你再编写你的新code或者`git stash pop`继续之前的code
 - 如果你是编写的新Feature的代码。你可以执行`git commit -m "your-comment"`,
 - 如果是继续编写之前的code，你可以执行`git commit --amend`,重新编辑你上次的commit并提交。
 - 如果提交时添加了`--amend`参数，那么此次的commit内容就是执行rebase前的那次提交的内容加上你rebase后新修改的内容。
+
+## push.default
+
+- matching - push all matching branches. All branches having the same name in both ends are considered to be matching. This is the default in Git 1.x.
+- upstream - push the current branch to its upstream branch...
+- simple - like upstream, but refuses to push if the upstream branch’s name is different from the local one...
+- current - push the current branch to a branch of the same name.

@@ -58,3 +58,52 @@ use wm;
 
 db.auth("root", "root")
 ```
+
+## Commonly Used Operations
+
+- Query
+    - In the following diagram, the query process specifies a query criteria and a sort modifier:
+
+    ![Query Stages](images/crud-query-stages.png)
+
+    - Sample format:
+    ```shell
+    db.collection.find({..query clause..}, {..projection..})
+                 .skip(10)
+                 .limit(10)
+                 .sort({..sort conditions..});
+    ```
+
+    ![Projection Stages](images/crud-query-w-projection-stages.png)
+
+- Pretty Outputting
+
+    ```shell
+    db.collection.find().pretty();
+    ```
+
+- Query Selectors
+    Referring to official documents https://docs.mongodb.org/manual/reference/operator/query/#query-selectors
+
+- [Update](https://docs.mongodb.org/manual/reference/method/db.collection.update/#db.collection.update)
+    ```shell
+    db.collection.update(
+        <query>,
+        <update>,
+        {
+            upsert: <boolean>,
+            multi: <boolean>,
+            writeConcern: <document>
+        }
+    )
+
+    db.users.update(
+        { age: { $gt: 18 } },
+        { $set: { status: "A" } },
+        { multi: true }
+    )
+    ```
+
+- Update Operators
+    Referring to official documents https://docs.mongodb.org/manual/reference/operator/update/#id1
+

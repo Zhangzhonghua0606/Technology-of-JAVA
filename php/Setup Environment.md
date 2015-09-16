@@ -75,7 +75,7 @@ sudo apt-get install nginx
 
 2. Config nginx
 ```sh
-vi /etc/nginx/conf.d/wm.conf
+vi /etc/nginx/conf.d/example.conf
 ```
 
 Add below configuration to the file, **Change the folder name to your own project (/usr/share/nginx/www/aug-marketing)**
@@ -83,12 +83,12 @@ Add below configuration to the file, **Change the folder name to your own projec
 ```sh
 server {
     listen       80;
-    server_name wm.com *.wm.com;
+    server_name example.com *.example.com;
     root  /usr/share/nginx/www/aug-marketing/src/backend/web;
     index index.html index.htm index.php;
 
-    access_log /var/log/nginx/wm.com-access.log;
-    error_log  /var/log/nginx/wm.com-error.log;
+    access_log /var/log/nginx/example.com-access.log;
+    error_log  /var/log/nginx/example.com-error.log;
 
     location / {
         proxy_pass http://localhost:81/;
@@ -111,12 +111,12 @@ server {
 
 server {
     listen       81;
-    server_name wm.com *.wm.com;
+    server_name example.com *.example.com;
     root  /usr/share/nginx/www/aug-marketing/src/frontend/web;
     index index.html index.htm index.php;
 
-    access_log /var/log/nginx/wm.com-access.log;
-    error_log  /var/log/nginx/wm.com-error.log;
+    access_log /var/log/nginx/example.com-access.log;
+    error_log  /var/log/nginx/example.com-error.log;
 
     location / {
         try_files $uri $uri/ /index.php?$args;
@@ -155,7 +155,7 @@ vi /etc/hosts
 ```
 Add below line to your host file
 ```sh
-127.0.0.1 wm.com
+127.0.0.1 example.com
 ```
 
 ## Setup Yii2
@@ -235,7 +235,7 @@ grunt dev
 
 **Every time you pull code from our repo, execute 'grunt compile'**
 
-Access http://wm.com from brower
+Access http://example.com from brower
 
 ## Initial project
 
